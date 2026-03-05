@@ -509,7 +509,8 @@ function makeDragBox(gd, plotinfo, x, y, w, h, ns, ew) {
             var axRange = Lib.simpleMap(ax.range, ax.r2l);
             var v0 = axRange[0] + (axRange[1] - axRange[0]) * centerFraction;
             function doZoom(v) { return ax.l2r(v0 + (v - v0) * zoom); }
-            ax.range = axRange.map(doZoom);
+            ax.range = ax._input.range = axRange.map(doZoom);
+            ax.setScale();
         }
 
         if(editX) {
